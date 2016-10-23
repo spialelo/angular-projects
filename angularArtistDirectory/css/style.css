@@ -250,6 +250,12 @@ a.small {
   margin: 0;
   padding: 10px 10px 0 10px;
   border-bottom: 1px dotted black;
+  opacity: .9;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
 }
 
 .artistlist a {
@@ -308,6 +314,14 @@ a.small {
   border-radius: 20px;
 }
 
-.artistinfo .btn {
+.artist.ng-enter.ng-enter-active, .artist.ng-leave{
+  opacity: 1;
+  height: 80px;
+  overflow: hidden;
+}
 
+.artist.ng-leave.ng-leave-active, .artist.ng-enter{
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
 }
