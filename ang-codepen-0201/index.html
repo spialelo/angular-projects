@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+
+    <style>
+        #container {
+            float: left;
+            width: 330px;
+            margin: 0 auto;
+        }
+        
+        label {
+            font-size: 0.7em;
+            margin-right: 5px;
+        }
+        
+        input {
+            margin: 1em 0;
+        }
+        
+        textarea {
+            float: left;
+            clear: left;
+        }
+        
+        button {
+            float: right;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div ng-app="ageApp" id="container">
+
+        <div ng-controller="AgeAppController">
+
+            <!--     <label for="input">Your age: </label><input type="text" placeholder="Enter age" ng-model="age" /> -->
+
+            <label for="input">Your birthday (Format: January 1, 1980): <br></label><input type="text" placeholder="Enter your full birthday" ng-model="age" />
+            <button ng-click="yourAge()">How old are you?</button>
+
+            <!--{{message}}+{{birthYear}}-->
+            <textarea name="" id="" cols="30" rows="10">{{message}}</textarea>
+
+            <button ng-click="clearValues()">Clear Input</button>
+
+        </div>
+
+
+
+    </div>
+
+    <!-- Wow! I remembered all of this part, off the top of my head. It's very little, but it's good to know that what I read so far has stuck. -->
+
+
+
+
+    <script>
+        var app = angular.module('ageApp', []);
+
+        app.controller('AgeAppController', ['$scope', function($scope) {
+
+            /*SCOPE!!! REMEMBER SCOPE/ROOTSCOPE!!!*/
+
+            $scope.message = 'Initial set up was a success!';
+            $scope.currentDate = Date.parse(new Date());
+            $scope.age = '';
+
+            $scope.yourAge = function() {
+
+                $scope.userBirth = Date.parse($scope.age);
+                $scope.userAge = Math.floor((($scope.currentDate - $scope.userBirth) / 86400000) / 365);
+                if ($scope.userAge >= 100) {
+                    $scope.message = 'Your age is: ' + $scope.userAge + '. You have lived a long life. >_>';
+                } else {
+                    $scope.message = 'Your age is: ' + $scope.userAge + '.';
+                }
+                console.log('How old are you clicked');
+            };
+
+
+            $scope.clearValues = function() {
+                $scope.message = 'Input field cleared.';
+                $scope.age = '';
+                console.log('clear me button clicked');
+            };
+
+        }]);
+    </script>
+
+
+
+</body>
+
+</html>
